@@ -28,23 +28,20 @@ display:block;
 }
 
 /* BOTÓN MÚSICA */
+
 .music-btn{
-position: absolute;
-top: 20px;
+bottom: 20px;
 right: 20px;
-bottom: auto;
-background: rgba(0,0,0,0.4);
-backdrop-filter: blur(5px);
-border-radius: 50%;
-width: 60px;
-height: 60px;
-display: flex;
-justify-content: center;
-align-items: center;
-cursor: pointer;
-box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-transition: transform 0.2s ease;
-z-index:10;
+}
+
+.music-btn:hover{
+    transform: scale(1.1);
+}
+
+.music-btn img{
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
 }
 
 .music-btn:hover{
@@ -66,39 +63,13 @@ max-width:500px;
 margin:25px auto;
 padding:25px;
 border-radius:20px;
-background:#f9f6ef;
+background:#f1f1f1;
 text-align:center;
 position:relative;
 overflow:hidden;
 box-shadow:0 10px 25px rgba(0,0,0,0.15);
 border:1px solid #e4d7b3;
-
-background-image: url("img/flor1.png"), url("img/flor2.png");
-background-repeat:no-repeat,no-repeat;
-background-position:top right, bottom left;
-background-size:120px,120px;
-
-animation: aparecer 1s ease;
-}
-
-/* COPOS */
-.card::before{
-content:"";
-position:absolute;
-top:-50px;
-left:0;
-width:100%;
-height:200%;
-background-image:url("img/copo.png");
-background-size:12px;
-opacity:0.25;
-animation: caerCopos 18s linear infinite;
-pointer-events:none;
-}
-
-@keyframes caerCopos{
-0%{transform:translateY(-50px);}
-100%{transform:translateY(600px);}
+background-image: none;
 }
 
 /* LINEA */
@@ -117,7 +88,7 @@ transform:translateX(-50%);
 /* TEXTOS */
 /* ===================== */
 .nombre-principal{
-font-family: 'Great Vibes', cursive;
+font-family: 'Cormorant Garamond', serif;
 font-size: 65px;
 text-align: center;
 color: #2f3e55;
@@ -284,13 +255,13 @@ margin-top:20px;
 
 .sobre-animado img{
 width:70px;
-animation: saltoSuave 2s infinite ease-in-out;
+animation: flotarSuave 4s infinite ease-in-out;
 }
 
-@keyframes saltoSuave{
-0%{ transform: translateY(0); }
-50%{ transform: translateY(-15px); }
-100%{ transform: translateY(0); }
+@keyframes flotarSuave{
+0%{ transform: scale(1); }
+50%{ transform: scale(1.05); }
+100%{ transform: scale(1); }
 }
 
 /* ===================== */
@@ -333,79 +304,18 @@ transform: scale(0.95);
 }
 
 /* ===================== */
-/* ESTETOSCOPIOS */
+/* MUSIC WRAPPER */
 /* ===================== */
-.estetoscopios{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-overflow:hidden;
-}
-
-.estetoscopios span{
-position:absolute;
-top:-50px;
-width: 50px;
-height:50px;
-background-image:url("img/estetoscopio.png");
-background-size:contain;
-background-repeat:no-repeat;
-animation: caerEstetoscopio linear infinite;
-opacity:0.8;
-will-change: transform;
-}
-
-@keyframes caerEstetoscopio{
-0%{transform:translateY(-50px) rotate(0deg); opacity:0;}
-10%{opacity:1;}
-100%{transform:translateY(600px) rotate(360deg); opacity:0;}
-}
-
-/* ===================== */
-/* ANIMACIÓN */
-/* ===================== */
-@keyframes aparecer{
-from{opacity:0; transform:translateY(30px);}
-to{opacity:1; transform:translateY(0);}
-}
-
-/* ===================== */
-/* RESPONSIVE */
-/* ===================== */
-@media (max-width:768px){
-
-.nombre-principal{
-font-size:40px;
-}
-
-.frase{
-font-size:16px;
-}
-
-.card{
-padding:20px;
-}
-
-.carousel img{
-width:140px;
-}
-
-}
-
 .music-wrapper{
 position: absolute;
-top: 20px;
-right: 20px;
+bottom: 20px;   /* ↓ lo bajamos */
+left: 20px;     /* ← lo pasamos a la izquierda */
 display: flex;
 flex-direction: column;
 align-items: center;
 z-index:10;
 }
 
-/* TEXTO */
 .texto-musica{
 color: white;
 font-size: 12px;
@@ -416,9 +326,54 @@ border-radius: 10px;
 animation: flotar 1.5s infinite ease-in-out;
 }
 
-/* ANIMACIÓN */
 @keyframes flotar{
 0%{ transform: translateY(0); }
 50%{ transform: translateY(-5px); }
 100%{ transform: translateY(0); }
 }
+
+/* ===================== */
+/* FLORES CONTROLADAS */
+/* ===================== */
+.card.flores-esquinas{
+position: relative;
+}
+
+.card.flores-esquinas .flor{
+position:absolute;
+pointer-events:none;
+}
+
+/* Tamaños */
+.flor.grande{
+width:180px;
+}
+
+.flor.normal{
+width:110px;
+}
+
+/* Posiciones */
+.flor.top{
+top:-15px;
+right:-15px;
+}
+
+.flor.bottom{
+bottom:-15px;
+left:-15px;
+}
+
+/* Responsive */
+@media (max-width:768px){
+  .flor.grande{
+    width: 180px;
+  }
+}
+
+.vest img{
+    width: 110px;
+    height: 110px;  
+    object-fit: contain; 
+}
+
